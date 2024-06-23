@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const endPoint = `https://api.github.com/users/luizfelippy`;
     const avatarElement = document.querySelector('#avatar');
     const nameElement = document.querySelector('#name');
     const usernameElement = document.querySelector('#username');
@@ -7,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const followingElement = document.querySelector('#following');
     const linkElement = document.querySelector('#link');
 
-    fetch('https://api.github.com/users/luizfelippy')
+    fetch(endPoint)
         .then(function(res) {
             return res.json();
         })
@@ -20,4 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
             followingElement.innerText = json.following;
             linkElement.href = json.html_url;
         })
+        .catch(function(error) {
+            console.error('Fetch error:', error);
+        });
+        
 })
